@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import cityRoutes from "./routes/cityRoutes.js";
+import instrumentsRoute from "./routes/instrumentsRoute.js";
+import categoriesRoute from "./routes/categoriesRoute.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,6 +12,7 @@ dotenv.config();
 const app = express();
 
 // Middleware
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
@@ -19,7 +21,7 @@ connectDB();
 
 // Routes
 app.use("/auth", authRoutes);
-app.use("/products", productRoutes);
-app.use("/cities", cityRoutes);
+app.use("/instruments", instrumentsRoute);
+app.use("/categories", categoriesRoute);
 
 export default app;
