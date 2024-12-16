@@ -1,10 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const practiceRoomSchema = new mongoose.Schema({
     id: { type: String, required: true },
     capacity: { type: Number, required: true },
-    isAvailable: { type: Boolean, required: true, default: true }, // For enabling/disabling rooms
+    isAvailable: { type: Boolean, required: true, default: true },
     isVIP: { type: Boolean, required: true, default: true }
 });
 
-module.exports = mongoose.model('PracticeRoom', practiceRoomSchema);
+const PracticeRoom = mongoose.model('PracticeRoom', practiceRoomSchema);
+
+export default PracticeRoom

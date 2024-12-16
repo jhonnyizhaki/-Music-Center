@@ -1,7 +1,7 @@
-const PracticeRoom = require('../models/practiceRoomModel');
+const PracticeRoom = require('../models/practiceRoomModel');//change to import
 
 // Create a new booking
-exports.createBooking = async (req, res) => {
+exports.createBooking = async (req, res) => {//change to export
     try {
         const { participantsCount, instrument, day, time } = req.body;
 
@@ -9,7 +9,7 @@ exports.createBooking = async (req, res) => {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
-        const booking = new PracticeRoom({
+        const booking = new Booking({
             participantsCount,
             instrument,
             day,

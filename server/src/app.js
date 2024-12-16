@@ -27,5 +27,6 @@ connectDB();
 app.use("/auth", authRoutes);
 app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
+app.use("/booking", bookingRoute);
 
 export default app;
