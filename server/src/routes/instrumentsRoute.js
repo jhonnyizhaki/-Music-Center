@@ -4,7 +4,7 @@ import { authMiddleware, adminAuthenticationMiddleware } from '../middlewares/au
 
 const router = express.Router();
 
-router.get('', getInstruments);
+router.get('/', getInstruments);
 router.get('/:id', getInstrumentById);
 router.post('/', authMiddleware, adminAuthenticationMiddleware, createInstrument);
 router.put('/:id', authMiddleware, adminAuthenticationMiddleware, updateInstrument);

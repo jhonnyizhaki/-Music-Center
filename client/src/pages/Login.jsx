@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // ייבוא הפונקציה
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const { login } = useAuth();
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await login(email, password);
-      navigate("/");
+      await login({ email, password })
+      navigate("/")
     } catch (error) {
-      setError("Failed to log in");
-      console.error(error);
+      setError("Failed to log in")
+      console.error(error)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Login</h1>
       {error && <div style={{ color: "red" }}>{error}</div>}
       <div>
-        <label>Email:</label>
+        <label>אימייל:</label>
         <input
           type="email"
           value={email}
@@ -34,7 +34,7 @@ const Login = () => {
         />
       </div>
       <div>
-        <label>Password:</label>
+        <label>password:</label>
         <input
           type="password"
           value={password}
@@ -46,7 +46,7 @@ const Login = () => {
         Login
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

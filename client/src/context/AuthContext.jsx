@@ -1,35 +1,46 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react"
+import axios from "axios"
+export const AuthContext = createContext()
 
-// יצירת ההקשר
-export const AuthContext = createContext();
-
-// פונקציה מותאמת לשימוש בהקשר
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useAuth must be used within an AuthProvider")
   }
-  return context;
-};
+  return context
+}
 
-// ספק ההקשר
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
-  const login = (email, password) => {
-    const userData = { email, token: "fakeToken123" }; // דוגמה לנתוני משתמש
-    setUser(userData);
-    localStorage.setItem("token", userData.token);
-  };
+  const register = async (userData) => {
+    const { data } = await axios.post(
+      "http://localhost:5000/auth/register",
+      userData
+    )
+  }
+
+  const login = async (userData) => {
+    await axios.post("http://localhost:5000/auth/login", userData)
+    await verifyToken()
+  }
+
+  const verifyToken = async () => {
+    const { data } = await axios.get("http://localhost:5000/auth/verify")
+    setUser(data)
+  }
 
   const logout = () => {
-    setUser(null);
-    localStorage.removeItem("token");
-  };
+    setUser(null)
+  }
+
+  useEffect(() => {
+    verifyToken()
+  }, [])
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, register, logout, login }}>
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}

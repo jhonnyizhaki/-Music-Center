@@ -1,28 +1,31 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const { register } = useAuth();
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [error, setError] = useState("")
+  const { register } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (password !== confirmPassword) {
-      return setError("The passwords aren't matching");
+      return setError("The passwords aren't matching")
     }
     try {
-      await register(email, password);
-      navigate("/");
+      await register({
+        email,
+        password,
+      })
+      navigate("/login")
     } catch (error) {
-      setError("The register is failed");
-      console.error(error);
+      setError("The register is failed")
+      console.error(error)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -59,7 +62,7 @@ const Register = () => {
         Register
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

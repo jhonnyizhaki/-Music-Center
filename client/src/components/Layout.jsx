@@ -1,9 +1,9 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import React from "react"
+import { Link, Outlet } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const Layout = () => {
-  const { user, logout } = useAuth(); 
+  const { user, logout } = useAuth()
 
   return (
     <div className="page-layout">
@@ -14,7 +14,12 @@ const Layout = () => {
         <div>
           {user ? (
             <>
-              <span className="username" onClick={() => window.location.href = "/login"}>{user.email}</span>
+              <span
+                className="username"
+                onClick={() => (window.location.href = "/login")}
+              >
+                {user.email}
+              </span>
               <a onClick={logout}>Log out</a>
             </>
           ) : (
@@ -32,7 +37,7 @@ const Layout = () => {
         <p>&copy; 2024 Center Music. All rights reserved.</p>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

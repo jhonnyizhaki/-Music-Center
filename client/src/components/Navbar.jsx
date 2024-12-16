@@ -1,10 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import React, { useEffect } from "react"
+import { Link } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const Navbar = () => {
   const { user, logout } = useAuth()
-
+  useEffect(() => {
+    console.log(user)
+  }, [user])
   return (
     <nav className="navbar">
       <div>
@@ -15,7 +17,7 @@ const Navbar = () => {
         {user ? (
           <>
             <span>{currentUser.email}</span>
-            <button onClick={logout}>LogOut</button>
+            <button onClick={logout}>Logout</button>
           </>
         ) : (
           <>
