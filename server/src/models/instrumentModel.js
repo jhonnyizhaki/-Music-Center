@@ -35,6 +35,6 @@ const instrumentSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-const Instrument = mongoose.model('instruments', instrumentSchema);
+const Instrument = mongoose.model('Instrument', instrumentSchema);
 
 export default Instrument
