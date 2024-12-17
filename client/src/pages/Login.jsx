@@ -25,7 +25,7 @@ const Login = () => {
       <h1>Login</h1>
       {error && <div style={{ color: "red" }}>{error}</div>}
       <div>
-        <label>אימייל:</label>
+        <label>Email:</label>
         <input
           type="email"
           value={email}
