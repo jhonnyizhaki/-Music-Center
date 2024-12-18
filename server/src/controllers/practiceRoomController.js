@@ -1,7 +1,7 @@
-const PracticeRoom = require('../models/practiceRoomModel');//change to import
+import PracticeRoom from '../models/practiceRoomModel';
 
 // Create a new booking
-exports.createBooking = async (req, res) => {//change to export
+export const createBooking = async (req, res) => {
     try {
         const { participantsCount, instrument, day, time } = req.body;
 
@@ -13,8 +13,7 @@ exports.createBooking = async (req, res) => {//change to export
             participantsCount,
             instrument,
             day,
-            time,
-            userId: req.user.id, // Assuming user ID is added by auth middleware
+            userId: req.user.id,
         });
 
         await booking.save();
@@ -25,7 +24,7 @@ exports.createBooking = async (req, res) => {//change to export
 };
 
 // Get all bookings for admin
-exports.getBookings = async (req, res) => {
+export const getBookings = async (req, res) => {
     try {
         const bookings = await PracticeRoom.find().populate('userId', 'name email');
         res.status(200).json(bookings);

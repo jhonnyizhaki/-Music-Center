@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "capacity": 10,
+    "isAvailable": true,
+    "isVIP": true
+  },
+  {
+    "id": "2",
+    "capacity": 10,
+    "isAvailable": true,
+    "isVIP": true
+  },
+  {
+    "id": "3",
+    "capacity": 10,
+    "isAvailable": true,
+    "isVIP": true
+  },
+  {
+    "id": "4",
+    "capacity": 4,
+    "isAvailable": true,
+    "isVIP": true
+  },
+  {
+    "id": "5",
+    "capacity": 2,
+    "isAvailable": true,
+    "isVIP": true
+  },
+  {
+    "id": "6",
+    "capacity": 4,
+    "isAvailable": true,
+    "isVIP": true
+  }
+]

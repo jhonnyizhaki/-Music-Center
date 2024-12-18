@@ -1,4 +1,4 @@
-const express = require('express');//cheng to import
+import express from 'express'
 const { createBooking, getBookings } = require('../controllers/practiceRoomController');//cheng to import
 const authMiddleware = require('../middlewares/authMiddleware');//cheng to import
 
@@ -12,4 +12,4 @@ router.patch('/', authMiddleware, editBooking);//To do
 // Admin routes
 //router.post('/bookings', authMiddleware, getBookings);
 
-module.exports = router;//change to export
+export default router;
