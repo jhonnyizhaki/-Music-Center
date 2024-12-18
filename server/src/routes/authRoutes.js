@@ -8,3 +8,5 @@ router.post("/login", login);
 router.get("/verify", authMiddleware, verify);
 
 export default router;
+
+

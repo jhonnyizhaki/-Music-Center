@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import instrumentsRoute from "./routes/instrumentsRoute.js";
 import categoriesRoute from "./routes/categoriesRoute.js";
+import practisRoombookingRoutes from "./routes/practisRoombookingRoutes.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -27,5 +28,7 @@ connectDB();
 app.use("/auth", authRoutes);
 app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
+app.use("/booking", practisRoombookingRoutes);
+app.use('/api/shopCart', shopCart);
 
 export default app;
