@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import styles from "./Home.module.css"
-import CardInstruments from "../components/CardInstruments"
+import CardInstruments from "../components/ShopCart"
 
 const Home = () => {
   return (
     <div>
       <ImageSlider />
-      <CardInstruments />
+      {/* <CardInstruments /> */}
     </div>
   )
 }
@@ -16,7 +16,12 @@ export default Home
 const ImageSlider = () => {
   const [imageIndex, setImageIndex] = useState(0)
 
-  const images = ["/image1.webp", "/image2.jpg"]
+  const images = [
+    "/image11.jpg", "/image12.jpg",
+     "/image13.jpg,", "/image14.jpg",
+      "/image15.jpg", "/image16.jpg", 
+      "/image17.jpg", "/image18.jpg",
+      "/image19.jpg"]
 
   useEffect(() => {
     const interval = setInterval(() => {

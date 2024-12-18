@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import SelectInstrumentsCategory from "./SelectInstrumentsCategory"
+import Instruments from "../pages/Instruments"
 
-const CardInstruments = () => {
+const ShopCart = () => {
   const [instruments, setInstruments] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(null)
 
@@ -25,16 +26,16 @@ const CardInstruments = () => {
 
   return (
     <div>
-      <h1>instrument</h1>
+      <h1>Products</h1>
       <SelectInstrumentsCategory setSelectedCategory={setSelectedCategory} />
       <div className="cards-container">
         {instruments.map((inst) => (
           <div key={inst._id} className="card">
-            <img src={inst.imageUrl} alt={inst.name} />
-            <h3>{inst.name}</h3>
-            <p className="category">{inst.category}</p>
-            <p className="price">₪{inst.price}</p>
-            <button className="add-to-cart">הוסף לעגלה</button>
+            <img src={Instrument.imageUrl} alt={Instrument.name} />
+            <h3>{Instrument.name}</h3>
+            <p className="category">{Instrument.category}</p>
+            <p className="price">₪{Instrument.price}</p>
+            <button className="add-to-cart">Add To Cart</button>
           </div>
         ))}
       </div>
@@ -42,4 +43,8 @@ const CardInstruments = () => {
   )
 }
 
-export default CardInstruments
+export default ShopCart
+
+
+
+
