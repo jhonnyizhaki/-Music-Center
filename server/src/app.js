@@ -3,10 +3,11 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
-import instrumentsRoute from "./routes/instrumentsRoute.js";
-import categoriesRoute from "./routes/categoriesRoute.js";
+import instrumentsRoute from "./routes/instrumentsRoutes.js";
+import categoriesRoute from "./routes/categoriesRoutes.js";
 import practisRoombookingRoutes from "./routes/practisRoombookingRoutes.js";
 import dotenv from "dotenv";
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +30,5 @@ app.use("/auth", authRoutes);
 app.use("/instruments", instrumentsRoute);
 app.use("/categories", categoriesRoute);
 app.use("/booking", practisRoombookingRoutes);
-app.use('/api/shopCart', shopCart);
-
+app.use('/orders', orderRoutes);
 export default app;

@@ -1,4 +1,4 @@
-import PracticeRoom from '../models/practiceRoomModel';
+import PracticeRoom from '../models/practiceRoomModel.js';
 
 // Create a new booking
 export const createBooking = async (req, res) => {

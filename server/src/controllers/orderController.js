@@ -1,50 +1,44 @@
-import Card from '../models/cardModel.js';
+import Order from '../models/orderModel.js';
 import Instrument from '../models/instrumentModel.js';
 
+
 // Add or create a card with an instrument
-export const addInstrumentToCard = async (req, res) => {
+export const addOrder = async (req, res) => {
     try {
-        const { userId, instrumentId, quantity } = req.body;
-
-        const instrument = await Instrument.findById(instrumentId);
-        if (!instrument) return res.status(404).json({ message: 'Instrument not found' });
-
-        let card = await Card.findOne({ userId });
-
-        // Create a new card if it doesn't exist
-        if (!card) {
-            card = new Card({
-                userId,
-                userName: req.user.name, // Assuming `req.user` is populated via middleware
-                items: [],
-            });
+        // 
+        const { userId, items } = req.body;// item[] = {id, quantity}
+        let totalPrice = 0
+        for (const i in items) {
+            const item = items[i]
+            const instrument = await Instrument.findById(item.id).select({
+                price: 1
+            })
+            if (!instrument) return res.status(404).json({ message: 'Instrument not found' });
+            totalPrice += instrument.price * item.quantity
         }
 
-        // Check if the instrument is already in the card
-        const existingItem = card.items.find(item => item.instrumentId.toString() === instrumentId);
 
-        if (existingItem) {
-            existingItem.quantity += quantity; // Update quantity
-        } else {
-            card.items.push({
-                instrumentId,
-                name: instrument.name,
-                price: instrument.price,
-                quantity,
-            });
-        }
+        console.log({
+            userId, // TODO: use jwt user
+            items,
+            totalPrice,
+        })
 
-        card.updatedAt = new Date();
-        await card.save();
-
-        res.status(201).json({ message: 'Instrument added to card', card });
+        const newOrder = new Order({
+            userId,
+            items: items.map((i) => ({ ...i, instrumentId: i.id })),
+            totalPrice,
+        })
+        await newOrder.save()
+        res.status(201).json({ message: 'Order Created', newOrder });
     } catch (error) {
+        console.log("Banana eror", error)
         res.status(500).json({ message: 'Server error', error });
     }
 };
 
 // Update an instrument's quantity in the card
-export const updateInstrumentInCard = async (req, res) => {
+export const updateInstrumentInOrder = async (req, res) => {
     try {
         const { userId, instrumentId, quantity } = req.body;
 
@@ -67,7 +61,7 @@ export const updateInstrumentInCard = async (req, res) => {
 };
 
 // Delete an instrument from the card
-export const deleteInstrumentFromCard = async (req, res) => {
+export const deleteInstrumentFromOrder = async (req, res) => {
     try {
         const { userId, instrumentId } = req.body;
 
@@ -87,7 +81,7 @@ export const deleteInstrumentFromCard = async (req, res) => {
 };
 
 // Get user's card
-export const getUserCard = async (req, res) => {
+export const getUserOrder = async (req, res) => {
     try {
         const { userId } = req.params;
 
